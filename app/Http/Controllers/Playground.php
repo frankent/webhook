@@ -56,9 +56,13 @@ class Playground extends Controller
         if (!$token_data) return ['success' => false];
 
         $headers = [];
+        $is_json = false;
         foreach($originData['header'] as $key => $val) {
             if (in_array($key, ['cache-control', 'content-type'])) {
                 $headers[] = "{$key}: " . implode(',', $val);
+                if ($key == 'content-type') {
+                    $is_json = 'application/json' == $val[0];
+                }
             }
         }
 
@@ -66,7 +70,7 @@ class Playground extends Controller
             'fwd_url' => $token_data->fwd_url,
             'method' => $originData['method'],
             'header' => $headers,
-            'payload' => http_build_query($originData['payload'])
+            'payload' => $is_json ? json_encode($originData['payload']) : http_build_query($originData['payload'])
         ];
 
         $resp = $this->forwardRequest($readyToFwd);
