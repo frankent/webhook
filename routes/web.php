@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Playground@entryPoint');
+
+Route::any('playground/{apiToken}', 'Playground@entryPoint');
