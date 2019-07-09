@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2d1180a1988da50cea940f77812d70c2
+class ComposerStaticInitff5d796c81981aa483603f93f03cbcf6
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -388,6 +388,7 @@ class ComposerStaticInit2d1180a1988da50cea940f77812d70c2
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\Playground' => __DIR__ . '/../..' . '/app/Http/Controllers/Playground.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -2524,6 +2525,7 @@ class ComposerStaticInit2d1180a1988da50cea940f77812d70c2
         'PHP_Token_UNSET_CAST' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_USE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_USE_FUNCTION' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'PHP_Token_Util' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token/Util.php',
         'PHP_Token_VAR' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_VARIABLE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_WHILE' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
@@ -2532,7 +2534,6 @@ class ComposerStaticInit2d1180a1988da50cea940f77812d70c2
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
-        'ParsedownTest' => __DIR__ . '/..' . '/erusev/parsedown/test/ParsedownTest.php',
         'PharIo\\Manifest\\Application' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Application.php',
         'PharIo\\Manifest\\ApplicationName' => __DIR__ . '/..' . '/phar-io/manifest/src/values/ApplicationName.php',
         'PharIo\\Manifest\\Author' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Author.php',
@@ -4008,10 +4009,10 @@ class ComposerStaticInit2d1180a1988da50cea940f77812d70c2
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2d1180a1988da50cea940f77812d70c2::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2d1180a1988da50cea940f77812d70c2::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit2d1180a1988da50cea940f77812d70c2::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit2d1180a1988da50cea940f77812d70c2::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitff5d796c81981aa483603f93f03cbcf6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitff5d796c81981aa483603f93f03cbcf6::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitff5d796c81981aa483603f93f03cbcf6::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitff5d796c81981aa483603f93f03cbcf6::$classMap;
 
         }, null, ClassLoader::class);
     }
