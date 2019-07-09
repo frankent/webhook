@@ -60,18 +60,21 @@
 
                                 <div class="collapse" id="headerCollapse">
                                     <div class="card card-body">
+                                        <h3>Header</h3>
                                         <div class="code_block"><?php echo json_encode(json_decode($debug_data->header), JSON_PRETTY_PRINT) ?></div>
                                     </div>
                                 </div>
 
-                                <div class="collapse show" id="responseCollapse">
+                                <div class="collapse" id="responseCollapse">
                                     <div class="card card-body">
+                                        <h3>Response</h3>
                                         <div class="code_block"><?php echo $debug_data->fwd_response ?></div>
                                     </div>
                                 </div>
 
-                                <div class="collapse" id="payloadCollapse">
+                                <div class="collapse show" id="payloadCollapse">
                                     <div class="card card-body">
+                                        <h3>Payload</h3>
                                         <div class="code_block"><?php echo json_encode(json_decode($debug_data->payload), JSON_PRETTY_PRINT) ?></div>
                                     </div>
                                 </div>
@@ -109,6 +112,10 @@
 
         .nav-link.error {
             color: #ff0000;
+        }
+
+        .collapse {
+            margin-bottom: 15px;
         }
     </style>
 @endsection

@@ -9,31 +9,39 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 
 class Playground extends Controller
 {
     public function debugData(Request $request, $apiToken) {
-        $token_data = DB::table('token_data')->where('token', $apiToken)->first();
+        $token_data = $this->getTokenData($apiToken);
         if (!$token_data) return view('welcome');
 
         if ($request->query('focus')) {
-            $debug_data = DB::table('incoming_data')
-                ->where('token_id', $token_data->id)
-                ->where('id', (int) $request->query('focus'))
-                ->first();
+            $focus_id = 'focus_' . $request->query('focus') . '_' . $token_data->id;
+            $debug_data = Cache::store('file')->remember($focus_id, 1, function() use ($token_data, $request) {
+                return DB::table('incoming_data')
+                    ->where('token_id', $token_data->id)
+                    ->where('id', (int)$request->query('focus'))
+                    ->first();
+            });
         } else {
-            $debug_data = DB::table('incoming_data')
-                ->where('token_id', $token_data->id)
-                ->orderBy('id', 'desc')
-                ->first();
+            $debug_data = Cache::store('file')->remember('focus_last_' . $token_data->id, 1, function() use ($token_data) {
+                return DB::table('incoming_data')
+                    ->where('token_id', $token_data->id)
+                    ->orderBy('id', 'desc')
+                    ->first();
+            });
         }
 
-        $index_data = DB::table('incoming_data')
-            ->select('id', 'fwd_status', 'created_at')
-            ->where('token_id', $token_data->id)
-            ->orderBy('id', 'desc')
-            ->get();
+        $index_data = Cache::store('file')->remember('index_data_' . $token_data->id, 1, function() use ($token_data) {
+           return DB::table('incoming_data')
+               ->select('id', 'fwd_status', 'created_at')
+               ->where('token_id', $token_data->id)
+               ->orderBy('id', 'desc')
+               ->get();
+        });
 
         return view('debug', [
             'title' => $token_data->token,
@@ -52,7 +60,7 @@ class Playground extends Controller
             'payload' => $request->all()
         ];
 
-        $token_data = DB::table('token_data')->where('token', $apiToken)->first();
+        $token_data = $this->getTokenData($apiToken);
         if (!$token_data) return ['success' => false];
 
         $headers = [];
@@ -94,6 +102,12 @@ class Playground extends Controller
             'fwd_response' => $resp,
             'field_data' => $originData,
         ];
+    }
+
+    private function getTokenData($apiToken) {
+        return Cache::store('file')->remember('getToken_' . $apiToken, 1, function() use ($apiToken) {
+            return DB::table('token_data')->where('token', $apiToken)->first();
+        });
     }
 
     private function forwardRequest($originData) {
