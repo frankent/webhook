@@ -95,7 +95,10 @@ class Playground extends Controller
         // Clear Exceed data
         $deleteExceedData = DB::table('incoming_data')->select('id')->where('token_id', $token_data->id)->offset(101)->orderBy('id', 'desc')->first();
         if ($deleteExceedData) {
-            DB::table('incoming_data')->where('id', $deleteExceedData->id)->delete();
+            DB::table('incoming_data')
+                ->where('id', '<',$deleteExceedData->id)
+                ->where('token_id', $token_data->id)
+                ->delete();
         }
 
         return [
@@ -105,7 +108,7 @@ class Playground extends Controller
     }
 
     private function getTokenData($apiToken) {
-        return Cache::store('file')->remember('getToken_' . $apiToken, 1, function() use ($apiToken) {
+        return Cache::store('file')->remember('getToken_' . $apiToken, 10, function() use ($apiToken) {
             return DB::table('token_data')->where('token', $apiToken)->first();
         });
     }
