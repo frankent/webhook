@@ -61,21 +61,21 @@
                                 <div class="collapse" id="headerCollapse">
                                     <div class="card card-body">
                                         <h3>Header</h3>
-                                        <div class="code_block"><?php echo json_encode(json_decode($debug_data->header), JSON_PRETTY_PRINT) ?></div>
+                                        <pre><code class="language-json"><?php echo json_encode(json_decode($debug_data->header), JSON_PRETTY_PRINT) ?></code></pre>
                                     </div>
                                 </div>
 
                                 <div class="collapse" id="responseCollapse">
                                     <div class="card card-body">
                                         <h3>Response</h3>
-                                        <div class="code_block"><?php echo $debug_data->fwd_response ?></div>
+                                        <pre><code class="language-json"><?php echo $debug_data->fwd_response ?></code></pre>
                                     </div>
                                 </div>
 
                                 <div class="collapse show" id="payloadCollapse">
                                     <div class="card card-body">
                                         <h3>Payload</h3>
-                                        <div class="code_block"><?php echo json_encode(json_decode($debug_data->payload), JSON_PRETTY_PRINT) ?></div>
+                                        <pre><code class="language-json"><?php echo json_encode(json_decode($debug_data->payload), JSON_PRETTY_PRINT) ?></code></pre>
                                     </div>
                                 </div>
                             </div>
@@ -87,12 +87,8 @@
     </section>
 
     <style>
-        .code_block {
-            word-break: break-word;
-            white-space: pre-wrap;
-            color: #fff;
-            padding: 15px;
-            background-color: #000;
+        code[class*="language-"] {
+            padding: 10px !important;
         }
 
         .custom-badge {
