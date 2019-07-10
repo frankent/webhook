@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
-                    <h3>Index</h3>
+                    <h3>Timestamp (UTC+0)</h3>
                     <ul class="nav flex-column nav-pills">
                         <?php foreach($index_data as $each_index): ?>
                             <?php $activeClass = isset($debug_data->id) ? $each_index->id == $debug_data->id ? 'active':'':'' ?>
