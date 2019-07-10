@@ -61,21 +61,21 @@
                                 <div class="collapse" id="headerCollapse">
                                     <div class="card card-body">
                                         <h3>Header</h3>
-                                        <pre><code class="language-json"><?php echo json_encode(json_decode($debug_data->header), JSON_PRETTY_PRINT) ?></code></pre>
+                                        <pre class="line-numbers"><code class="language-json"><?php echo json_encode(json_decode($debug_data->header), JSON_PRETTY_PRINT) ?></code></pre>
                                     </div>
                                 </div>
 
                                 <div class="collapse" id="responseCollapse">
                                     <div class="card card-body">
                                         <h3>Response</h3>
-                                        <pre><code class="language-json"><?php echo $debug_data->fwd_response ?></code></pre>
+                                        <pre class="line-numbers"><code class="language-json"><?php echo $debug_data->fwd_response ?></code></pre>
                                     </div>
                                 </div>
 
                                 <div class="collapse show" id="payloadCollapse">
                                     <div class="card card-body">
                                         <h3>Payload</h3>
-                                        <pre><code class="language-json"><?php echo json_encode(json_decode($debug_data->payload), JSON_PRETTY_PRINT) ?></code></pre>
+                                        <pre class="line-numbers"><code class="language-json"><?php echo json_encode(json_decode($debug_data->payload), JSON_PRETTY_PRINT) ?></code></pre>
                                     </div>
                                 </div>
                             </div>
@@ -87,10 +87,6 @@
     </section>
 
     <style>
-        code[class*="language-"] {
-            padding: 10px !important;
-        }
-
         .custom-badge {
             display: inline-block;
             margin-right: 15px;
