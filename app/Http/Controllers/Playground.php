@@ -114,6 +114,13 @@ class Playground extends Controller
     }
 
     private function forwardRequest($originData) {
+        if (!$originData['fwd_url']) {
+            return [
+                'success' => true,
+                'message' => '___DEBUG___'
+            ];
+        }
+
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
