@@ -53,6 +53,11 @@ class Playground extends Controller
 
     public function entryPoint(Request $request, $apiToken) {
         $method = $request->method();
+
+        if ($method == 'GET') {
+            return redirect("/debug/{$apiToken}");
+        }
+
         $originData = [
             'apiToken' => $apiToken,
             'method' => $method,
